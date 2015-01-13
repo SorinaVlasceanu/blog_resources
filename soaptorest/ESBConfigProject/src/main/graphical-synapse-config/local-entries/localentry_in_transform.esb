@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<esb:EsbDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:esb="http:///org/wso2/developerstudio/eclipse/gmf/esb">
+  <server type="LOCAL_ENTRY">
+    <children xsi:type="esb:LocalEntry" entryName="in_transform" localEntryType="In-lined XML Entry" valueXML="&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:fn=&quot;http://www.w3.org/2005/02/xpath-functions&quot; xmlns:m0=&quot;http://services.samples&quot; version=&quot;2.0&quot; exclude-result-prefixes=&quot;m0 fn&quot;>&#xA;            &lt;xsl:output method=&quot;xml&quot; omit-xml-declaration=&quot;yes&quot; indent=&quot;yes&quot;/>&#xA;            &lt;xsl:template match=&quot;*&quot;>&#xA;                &lt;xsl:element name=&quot;{local-name()}&quot; namespace=&quot;http://services.samples&quot;>&#xA;                    &lt;xsl:copy-of select=&quot;attribute::*&quot;/>&#xA;                    &lt;xsl:apply-templates/>&#xA;                &lt;/xsl:element>&#xA;            &lt;/xsl:template>&#xA;        &lt;/xsl:stylesheet>"/>
+  </server>
+</esb:EsbDiagram>
