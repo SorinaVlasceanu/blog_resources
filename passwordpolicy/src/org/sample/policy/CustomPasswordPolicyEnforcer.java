@@ -15,16 +15,19 @@ public class CustomPasswordPolicyEnforcer extends AbstractPasswordPolicyEnforcer
     private static final Log log = LogFactory.getLog(DefaultPasswordLengthPolicy.class);
     private String policyPattern;
 
+
     @Override
     public boolean enforce(Object... args) {
         //check the policyPattern at the user adding as well, same done at the server initialization as well.
         if (policyPattern == null) {
-            log.error("Failed to initialize the PasswordPolicy handler because policy pattern is null ");
+            errorMessage = "Failed to initialize the PasswordPolicy handler because policy pattern is null ";
+            log.error(errorMessage);
             return false;
         }
         //can't add empty password
         if (args == null || args.length == 0) {
-            log.info("Password can't be empty");
+            errorMessage = "Password can't be empty";
+            log.info(errorMessage);
             return false;
         }
         //match the user password with the password policy.
@@ -34,7 +37,8 @@ public class CustomPasswordPolicyEnforcer extends AbstractPasswordPolicyEnforcer
         boolean result = matcher.matches();
 
         if (!result) {
-            log.warn("Password should have one upper case, one lowercase and one digit and special character");
+            errorMessage = "Password should have one upper case, one lowercase and one digit and special character";
+            log.warn(errorMessage);
         }
         return result;
     }
@@ -48,6 +52,11 @@ public class CustomPasswordPolicyEnforcer extends AbstractPasswordPolicyEnforcer
                 log.error("Failed to initialize the PasswordPolicy handler because policy pattern is null ");
             }
         }
+    }
+
+    @Override
+    public String getErrorMessage() {
+        return errorMessage;
     }
 }
 
