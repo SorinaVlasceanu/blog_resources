@@ -9,15 +9,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by ajith on 1/13/15.
- */
+
 public class CustomPasswordPolicyEnforcer extends AbstractPasswordPolicyEnforcer {
 
     private static final Log log = LogFactory.getLog(DefaultPasswordLengthPolicy.class);
-
-    private int MIN_LENGTH;
-    private int MAX_LENGTH;
     private String policyPattern;
 
     @Override
@@ -28,7 +23,7 @@ public class CustomPasswordPolicyEnforcer extends AbstractPasswordPolicyEnforcer
             return false;
         }
         //can't add empty password
-        if (args != null || args.length > 0) {
+        if (args == null || args.length == 0) {
             log.info("Password can't be empty");
             return false;
         }
