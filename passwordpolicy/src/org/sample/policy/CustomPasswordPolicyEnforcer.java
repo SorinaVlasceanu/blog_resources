@@ -27,7 +27,7 @@ public class CustomPasswordPolicyEnforcer extends AbstractPasswordPolicyEnforcer
         //can't add empty password
         if (args == null || args.length == 0) {
             errorMessage = "Password can't be empty";
-            log.info(errorMessage);
+            log.error(errorMessage);
             return false;
         }
         //match the user password with the password policy.
@@ -38,7 +38,7 @@ public class CustomPasswordPolicyEnforcer extends AbstractPasswordPolicyEnforcer
 
         if (!result) {
             errorMessage = "Password should have one upper case, one lowercase and one digit and special character";
-            log.warn(errorMessage);
+            log.error(errorMessage);
         }
         return result;
     }
