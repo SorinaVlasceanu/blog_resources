@@ -31,9 +31,6 @@
             <fileset dir="${plugins.dir}">
                 <include name="*.jar"/>
             </fileset>
-            <fileset dir="${product.home}/repository/components/plugins">
-                <include name="*.jar"/>
-            </fileset>
         </path>
     </target>
     <target name="compile" depends="init" description="Compile all Java">
