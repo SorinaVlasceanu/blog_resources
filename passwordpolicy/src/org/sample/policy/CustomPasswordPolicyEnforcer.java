@@ -37,7 +37,7 @@ public class CustomPasswordPolicyEnforcer extends AbstractPasswordPolicyEnforcer
         boolean result = matcher.matches();
 
         if (!result) {
-            errorMessage = "Password should have one upper case, one lowercase and one digit and special character";
+            errorMessage = "Password should have 6-8 characters including  one upper case, one lowercase , one digit and special character [!@#$%&*]";
             log.error(errorMessage);
         }
         return result;
