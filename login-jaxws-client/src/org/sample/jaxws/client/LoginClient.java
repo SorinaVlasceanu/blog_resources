@@ -17,7 +17,7 @@ import java.util.Map;
 public class LoginClient {
 
     public static void main(String[] args) {
-        System.setProperty("javax.net.ssl.trustStore", "/home/ajith/wso2/packs/wso2is-5.0.0/repository/resources/security/client-truststore.jks");
+        System.setProperty("javax.net.ssl.trustStore", "<product_home>/repository/resources/security/client-truststore.jks");
         System.setProperty("javax.net.ssl.trustStorePassword", "wso2carbon");
         AuthenticationAdmin authenticationAdmin = new AuthenticationAdmin();
         AuthenticationAdminPortType portType = authenticationAdmin.getAuthenticationAdminHttpsSoap11Endpoint();
