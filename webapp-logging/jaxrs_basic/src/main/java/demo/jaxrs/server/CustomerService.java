@@ -39,7 +39,7 @@ public class CustomerService {
     Map<Long, Order> orders = new HashMap<Long, Order>();
 
     //This it to write to logs to external file
-    private static Logger log = Logger.getLogger(CustomerService.class.getName());
+    private static Logger customLog = Logger.getLogger(CustomerService.class.getName());
     //This us to write to logs to wso2carbon.log file
     private static final Log wso2Log = LogFactory.getLog(CustomerService.class);
 
@@ -52,7 +52,7 @@ public class CustomerService {
     public Customer getCustomer(@PathParam("id") String id) {
         System.out.println("----invoking getCustomer, Customer id is: " + id);
 
-        log.info("get customer information for "+ id);
+        customLog.info("get customer information for "+ id);
         wso2Log.info("get customer information for "+ id);
 
         long idNumber = Long.parseLong(id);
