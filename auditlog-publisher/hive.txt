@@ -1,0 +1,28 @@
+CREATE EXTERNAL TABLE IF NOT EXISTS ACCOUNT_ACTIVITY
+(key STRING, initiator STRING, action STRING, target STRING, result STRING, uuid STRING, logTime BIGINT) STORED BY 'org.apache.hadoop.hive.cassandra.CassandraStorageHandler' WITH SERDEPROPERTIES (
+"wso2.carbon.datasource.name" = "WSO2BAM_CASSANDRA_DATASOURCE",
+"cassandra.cf.name" = "audit_log_IS" ,
+"cassandra.columns.mapping" =
+":key,payload_initiator, payload_action, payload_target, payload_result,payload_uuid, payload_logTime" );
+
+
+
+CREATE EXTERNAL TABLE IF NOT EXISTS ACCOUNT_ACTIVITY_SUMMARY1(initiator STRING, action STRING, target STRING, result STRING,uuid STRING, logTime STRING) STORED BY
+'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler' TBLPROPERTIES (
+'wso2.carbon.datasource.name'='WSO2BAM_DATASOURCE',
+'hive.jdbc.update.on.duplicate' = 'false' ,
+'hive.jdbc.primary.key.fields' = 'uuid' ,
+'hive.jdbc.table.create.query' = 'CREATE TABLE ACCOUNT_ACTIVITY_SUMMARY1_TBL (initiator VARCHAR(100), action VARCHAR(100), target VARCHAR(100),result VARCHAR(100),uuid VARCHAR(100), logTime VARCHAR(100))' );
+
+
+insert overwrite table ACCOUNT_ACTIVITY_SUMMARY1 select initiator,action,target,result,uuid, from_unixtime(cast(logTime/1000 as BIGINT), 'yyyy-MM-dd HH:mm:ss') as logTime  from ACCOUNT_ACTIVITY;
+
+
+ CREATE EXTERNAL TABLE IF NOT EXISTS ACCOUNT_ACTIVITY_SUMMARY2(initiator STRING, action STRING, result STRING,totalcount INT) STORED BY
+ 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler' TBLPROPERTIES ( 
+ 'wso2.carbon.datasource.name'='WSO2BAM_DATASOURCE',
+ 'hive.jdbc.update.on.duplicate' = 'false' , 
+ 'hive.jdbc.primary.key.fields' = 'uuid' , 
+ 'hive.jdbc.table.create.query' = 'CREATE TABLE ACCOUNT_ACTIVITY_SUMMARY2_TBL (initiator VARCHAR(100), action VARCHAR(100),result VARCHAR(100),totalcount INT)' );
+ 
+insert overwrite table ACCOUNT_ACTIVITY_SUMMARY2 select initiator,action,result, count(DISTINCT key) from ACCOUNT_ACTIVITY group by initiator,action,result;
