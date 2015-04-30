@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="SimpleStockQuoteServiceProxy"
+       transports="https"
+       startOnLoad="true"
+       trace="disable">
+    <description/>
+    <target>
+        <inSequence>
+            <send>
+                <endpoint>
+                    <address uri="https://localhost:9002/services/SimpleStockQuoteService"/>
+                </endpoint>
+            </send>
+            <header xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+                    name="wsse:Security"
+                    action="remove"/>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+    </target>
+</proxy>
