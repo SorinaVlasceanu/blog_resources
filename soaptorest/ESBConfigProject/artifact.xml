@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="admin_StockQuoteAPI--In" groupId="com.example.ESBConfigProject.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/admin_StockQuoteAPI--In.xml</file>
+    </artifact>
+    <artifact name="admin_StockQuoteAPI--Out" groupId="com.example.ESBConfigProject.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/admin_StockQuoteAPI--Out.xml</file>
+    </artifact>
+</artifacts>

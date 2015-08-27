@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="admin--StockQuoteAPI:v1.0.0--In">
+    <payloadFactory media-type="xml">
+        <format>
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://services.samples/xsd" xmlns:ser="http://services.samples">
+                <soapenv:Header/>
+                <soapenv:Body>
+                    <ser:getQuote>
+                        <!--Optional:-->
+                        <ser:request>
+                            <!--Optional:-->
+                            <xsd:symbol>$1</xsd:symbol>
+                        </ser:request>
+                    </ser:getQuote>
+                </soapenv:Body>
+            </soapenv:Envelope>
+        </format>
+        <args>
+            <arg xmlns:m0="http://services.samples/xsd" evaluator="xml" expression="$url:name"/>
+        </args>
+    </payloadFactory>
+</sequence>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="admin--StockQuoteAPI:v1.0.0--Out">
+    <property name="messageType" value="application/json" scope="axis2" type="STRING"/>
+</sequence>
