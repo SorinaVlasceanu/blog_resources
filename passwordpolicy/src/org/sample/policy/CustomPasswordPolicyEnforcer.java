@@ -32,6 +32,7 @@ public class CustomPasswordPolicyEnforcer extends AbstractPasswordPolicyEnforcer
     private String policyPattern;
 
 
+
     @Override
     public boolean enforce(Object... args) {
         //check the policyPattern at the user adding as well, same done at the server initialization as well.
