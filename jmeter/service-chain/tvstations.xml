@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api xmlns="http://ws.apache.org/ns/synapse"
+     name="tvstations"
+     context="/channels">
+   <resource methods="GET">
+      <inSequence>
+         <payloadFactory media-type="json">
+            <format>{  "details":{    "totalChannelCount":4,    "channelDetails":{      "channelDetail":[        {          "name":"TV-01",          "owner":"ajith",          "location":"Colombo 05"        },        {          "name":"TV-02",          "owner":"vajira",          "location":"Colombo 05"        },        {          "name":"TV-03",          "owner":"ranjith",          "location":"Colombo 05"        },        {          "name":"TV-04",          "owner":"lakmali",          "location":"Colombo 05"        }      ]    }  }}</format>
+            <args/>
+         </payloadFactory>
+         <respond/>
+      </inSequence>
+   </resource>
+</api>

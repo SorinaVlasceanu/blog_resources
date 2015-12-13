@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api xmlns="http://ws.apache.org/ns/synapse"
+     name="tvprograms"
+     context="/programs">
+   <resource methods="GET">
+      <inSequence>
+         <log level="custom">
+            <property name="prop1" expression="get-property('query.param.channel')"/>
+         </log>
+         <filter source="get-property('query.param.channel')" regex="TV-01">
+            <then>
+               <payloadFactory media-type="json">
+                  <format>{  "details": {    "totalPrograms": 4,    "channelName": "TV-01",    "programsDetails": {      "program": [        {          "name": "Morning Show",          "presenter": "ajith",          "duration": "1h"        },        {          "name": "Music Hour",          "presenter": "vajira",          "duration": "2h"        },        {          "name": "News",          "presenter": "nishatha",          "duration": "3h"        },        {          "name": "Teledrama",          "presenter": "lakmali",          "duration": "4h"        }      ]    }  }}</format>
+                  <args/>
+               </payloadFactory>
+               <respond/>
+            </then>
+            <else>
+               <filter source="get-property('query.param.channel')" regex="TV-02">
+                  <then>
+                     <payloadFactory media-type="json">
+                        <format> { "details": {    "totalPrograms": 4,    "channelName": "TV-02",    "programsDetails": {      "program": [        {          "name": "News",          "presenter": "ajith",          "duration": "1h"        },        {          "name": "Movie",          "presenter": "vajira",          "duration": "2h"        },        {          "name": "Sports News",          "presenter": "nishatha",          "duration": "3h"        },        {          "name": "Night Time Music",          "presenter": "lakmali",          "duration": "4h"        }      ]    }  }}</format>
+                        <args/>
+                     </payloadFactory>
+                     <respond/>
+                  </then>
+                  <else/>
+               </filter>
+            </else>
+         </filter>
+      </inSequence>
+   </resource>
+</api>
